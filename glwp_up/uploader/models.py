@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from formatChecker import ContentTypeRestrictedFileField
+from django.utils import timezone
+from datetime import timedelta
 
 
 class User(AbstractUser):
@@ -12,14 +15,13 @@ class User(AbstractUser):
 
 
 class Project(models.Model):
-    name = models.TextField("project", primary_key=True)
-    size = models.IntegerField()
-    user = models.ForeignKey(User)
-    update_date = models.DateTimeField("publish date")
-    expire_date = models.DateTimeField("expiration date")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
+    proj_name = models.CharField(default='ProjectName', max_length=40, verbose_name='Project name')
+    proj_file = ContentTypeRestrictedFileField(null=True, upload_to='./uploaded_projects', verbose_name='Project file',
+                                               content_types=['application/zip', 'application/x-compressed-tar',
+                                                              'gzip-compressed'], max_upload_size=5242880)
+    upload_date = models.DateTimeField(default=timezone.now)
+    expire_date = models.DateTimeField(default=timezone.now()+timedelta(days=14))
 
     def get_name(self):
         return self.name
-
-    def get_size(self):
-        return self.size

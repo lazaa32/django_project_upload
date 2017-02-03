@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GISLab.web project uploader - List of projects</title>
+    </head>
+    <body>
+    <!-- List of uploaded projects -->
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+    <h1>Uploaded projects:</h1>
+    {% if projects %}
+        <ul>
+        {% for project in projects %}
+            <li><a href="{{ project.proj_file.url }}">{{ project.proj_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No projects uploaded.</p>
+    {% endif %}
+    </div>
+    </body>
+</html>

@@ -44,11 +44,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Project',
             fields=[
-                ('name', models.TextField(serialize=False, verbose_name=b'project', primary_key=True)),
-                ('size', models.IntegerField()),
-                ('update_date', models.DateTimeField(verbose_name=b'publish date')),
-                ('expire_date', models.DateTimeField(verbose_name=b'expiration date')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('proj_name', models.CharField(default=b'ProjectName', max_length=40, verbose_name=b'Project name')),
+                ('proj_file', models.FileField(upload_to=b'./uploaded_projects', null=True, verbose_name=b'Project file')),
+                ('upload_date', models.DateTimeField(auto_now_add=True)),
+                ('pouser', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
