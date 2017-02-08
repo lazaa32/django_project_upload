@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import datetime
+from django.utils.timezone import utc
 import django.contrib.auth.models
 import django.utils.timezone
 from django.conf import settings
@@ -47,8 +49,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('proj_name', models.CharField(default=b'ProjectName', max_length=40, verbose_name=b'Project name')),
                 ('proj_file', models.FileField(upload_to=b'./uploaded_projects', null=True, verbose_name=b'Project file')),
-                ('upload_date', models.DateTimeField(auto_now_add=True)),
-                ('pouser', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('upload_date', models.DateTimeField(default=django.utils.timezone.now)),
+                ('expire_date', models.DateTimeField(default=datetime.datetime(2017, 2, 22, 17, 3, 38, 610982, tzinfo=utc))),
+                ('user', models.ForeignKey(verbose_name=b'User', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

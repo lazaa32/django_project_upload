@@ -72,3 +72,10 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+TASK_UPLOAD_FILE_TYPES = ['zip', 'x-compressed-tar', 'gzip']
+TASK_UPLOAD_FILE_MAX_SIZE = "5242880"
+
+LOGIN_REDIRECT_URL = 'upload_page'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+# AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend')
