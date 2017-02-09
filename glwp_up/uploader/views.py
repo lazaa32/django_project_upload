@@ -12,8 +12,8 @@ def upload_file(request):
         if form.is_valid():
             f = form.save(commit=False)
             f.user = request.user
-            # f.unzip()
             f.save()
+            f.extract()
 
             return render_to_response('uploader/list.html', {'projects': projects})
     else:
