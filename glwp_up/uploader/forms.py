@@ -1,3 +1,4 @@
+import os
 from django import forms
 from django.conf import settings
 from django.template.defaultfilters import filesizeformat
@@ -18,8 +19,12 @@ class ProjectForm(forms.ModelForm):
         file = self.cleaned_data['proj_file']
         try:
             if file:
-                file_type = file.content_type.split('/')[-1]
+                destination = settings.MEDIA_ROOT + '/uploaded_projects/'
+                if os.path.isfile(destination+file.name):
+                    raise forms.ValidationError('A file with the name "'+file.name+'" already exists. Please, '
+                                                'rename your file and try again.')
 
+                file_type = file.content_type.split('/')[-1]
                 if file_type in settings.TASK_UPLOAD_FILE_TYPES:
                     if file._size > settings.TASK_UPLOAD_FILE_MAX_SIZE:
                         raise forms.ValidationError(_('Please keep filesize under %s. Current filesize %s') %

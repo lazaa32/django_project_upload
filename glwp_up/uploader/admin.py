@@ -11,5 +11,4 @@ class ProjectAdmin(admin.ModelAdmin):
         ('Date information', {'fields': ['upload_date', 'expire_date']}),
     ]
 
-admin.site.register(get_user_model())
 admin.site.register(Project, ProjectAdmin)

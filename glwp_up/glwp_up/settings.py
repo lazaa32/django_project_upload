@@ -56,8 +56,6 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'uploader.User'
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'CET'

@@ -11,12 +11,15 @@
     {% if projects %}
         <ul>
         {% for project in projects %}
-            <li><a href="{{ project.proj_file.url }}">{{ project.proj_name }}</a></li>
+            <li><a href="/download{{project.proj_file.url}}">{{ project.proj_name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
         <p>No projects uploaded.</p>
     {% endif %}
+    </div>
+    <div style="padding:40px;margin:40px;">
+        <a href="/uploader/upload">Back to upload</a>
     </div>
     </body>
 </html>
