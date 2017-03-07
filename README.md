@@ -1,5 +1,7 @@
 # django_project_upload
+
 To try django_project_uploader go step by step through this tutorial.
+
 1. Change to your directory
 mkdir test
 cd test
