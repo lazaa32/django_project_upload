@@ -70,10 +70,15 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+UPLOADED_DIR = os.path.join(MEDIA_ROOT, 'uploaded_projects')
+UNZIPPED_DIR = os.path.join(MEDIA_ROOT, 'unzipped_projects')
 
 TASK_UPLOAD_FILE_TYPES = ['zip', 'x-compressed-tar', 'gzip']
 TASK_UPLOAD_FILE_MAX_SIZE = "5242880"
+MAX_NUM_OF_PROJECT = 5
 
 LOGIN_REDIRECT_URL = 'upload_page'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 # AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend')
+
+AUTH_USER_MODEL = 'uploader.User'

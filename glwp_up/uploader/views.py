@@ -2,7 +2,6 @@ import os
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-from django.conf import settings
 from django.core.servers.basehttp import FileWrapper
 from .forms import ProjectForm
 from .models import Project
@@ -13,6 +12,7 @@ def upload_file(request):
         form = ProjectForm(request.user, request.POST, request.FILES)
         if form.is_valid():
             f = form.save(commit=False)
+            f.proj_name = form.cleaned_data['proj_file'].name
             f.user = request.user
             f.save()
             f.extract()
@@ -30,7 +30,7 @@ def project_list(request):
 
 
 def download(request, file_name):
-    file_path = settings.MEDIA_ROOT + file_name.strip('media')
+    file_path = os.path.join('/', file_name.strip('media'))
     file_wrapper = FileWrapper(file(file_path,'rb'))
     response = HttpResponse(file_wrapper)
     response['X-Sendfile'] = file_path

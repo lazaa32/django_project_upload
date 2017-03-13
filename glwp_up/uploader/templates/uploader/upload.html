@@ -12,7 +12,7 @@
             {% csrf_token %}
             <p>{{ form.non_field_errors }}</p>
             <p>User: {{ form.user }}</p>
-            <p>{{ form.proj_name.label_tag }} {{ form.proj_name }}</p>
+{#            <p>{{ form.proj_name.label_tag }} {{ form.proj_name }}</p>#}
             <p>{{ form.proj_file.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.proj_file }}</p>
             <p><input type="submit" value="Upload" /></p>
         </form>

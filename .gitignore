@@ -1,6 +1,8 @@
 *.pyc
 .idea
 */media
-*/migrations
+*migrations
 *db.sqlite3
 */media
+glwp_up/uploader/migrations/
+

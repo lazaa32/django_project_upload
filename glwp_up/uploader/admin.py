@@ -1,6 +1,7 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
-from .models import Project
+from django.contrib.auth.admin import UserAdmin
+
+from .models import Project, User
 
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -11,4 +12,13 @@ class ProjectAdmin(admin.ModelAdmin):
         ('Date information', {'fields': ['upload_date', 'expire_date']}),
     ]
 
+
+class MyUserAdmin(UserAdmin):
+    list_display = ('username', 'num_of_projects')
+    fieldsets = [
+        ('User', {'fields': ['username', 'first_name', 'last_name', 'password']}),
+        ('Projects', {'fields': ['num_of_projects']}),
+    ]
+
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(User, MyUserAdmin)
